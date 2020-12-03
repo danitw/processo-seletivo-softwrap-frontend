@@ -1,0 +1,22 @@
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5px;
+
+}
+
+.top {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.top p {
+  margin-left: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+  text-align: center;
+}
