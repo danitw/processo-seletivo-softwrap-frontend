@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { Table } from 'react-bootstrap'
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import './style.css';
+
+import FormAddUser from '../components/formAddUser/formAddUser.jsx';
 
 class Index extends Component {
   render() {
     return (
       <main>
         <div class="top">
-          <Button variant="primary">Add New</Button>
+          <Popup trigger={ <Button variant="primary">Add New</Button> } modal>
+            <FormAddUser />
+          </Popup>
+
           <p>2 registros no banco de dados</p>
         </div>
           <Table striped bordered hover>
