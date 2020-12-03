@@ -1,0 +1,25 @@
+header {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(34,36,38,.15);
+}
+
+.actions {
+  padding: 1rem;
+  border-top: 1px solid rgba(34,36,38,.15);
+  text-align: right;
+}
+
+.content {
+  display: block;
+  width: 100%;
+  font-size: 1em;
+  padding: 1.5rem;
+  background: #fff;
+}
+
+.yes {
+  margin-right: 10px;
+}

@@ -6,6 +6,8 @@ import 'reactjs-popup/dist/index.css';
 import './style.css';
 
 import FormAddUser from '../components/formAddUser/formAddUser.jsx';
+import FormEditUser from '../components/formEditUser/formEditUser.jsx';
+import ModalConfirmDelete from '../components/modalConfirmDelete/modalConfirmDelete.jsx';
 
 class Index extends Component {
   render() {
@@ -28,6 +30,7 @@ class Index extends Component {
                 <th>CPF</th>
                 <th>Cidade</th>
                 <th>Estado</th>
+                <th>Ações</th>
               </tr>
             </thead>
 
@@ -40,6 +43,15 @@ class Index extends Component {
                 <td>092318738192</td>
                 <td>Santa Barbara d' Oeste</td>
                 <td>São Paulo</td>
+                <td>
+                   <Popup trigger={ <Button variant="primary">Editar</Button> } modal>
+                     <FormEditUser />
+                   </Popup>
+                           
+                   <Popup trigger={ <Button className="margem" variant="dark">Delete</Button> } modal>
+                     <ModalConfirmDelete />
+                   </Popup>
+                </td>
               </tr>
             </tbody>
           </Table>
