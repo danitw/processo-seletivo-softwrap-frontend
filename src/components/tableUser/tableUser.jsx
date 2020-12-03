@@ -4,12 +4,58 @@ import { Table } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './index.css';
+import axios from 'axios'
 
 import FormEditUser from '../formEditUser/formEditUser.jsx';
 import ModalConfirmDelete from '../modalConfirmDelete/modalConfirmDelete.jsx';
 
 class TableUser extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      peoples: []
+    }
+  }
+
+  componentDidMount() {
+    this.fetchPeoples();
+  }
+
+  async fetchPeoples() {
+    axios.get('http://localhost:8000').then(res => {
+      this.setState({ peoples: res.data })
+    })
+  }
+
   render() {
+    const GetPeoplesList = () => {
+      let peoples = this.state.peoples;
+
+      return peoples.map(people =>
+          <tr>
+            <td>{ people.id }</td>
+            <td>{ people.name }</td>
+            <td>{ people.age }</td>
+            <td>{ people.civil_state }</td>
+            <td>{ people.CPF }</td>
+            <td>{ people.city }</td>
+            <td>{ people.state }</td>
+            <td>
+              <Popup trigger={ <Button variant="primary">Editar</Button> } modal>
+                <FormEditUser />
+              </Popup>
+
+              <Popup trigger={ <Button className="margem" variant="dark">Delete</Button> } modal>
+                <ModalConfirmDelete />
+              </Popup>
+            </td>
+          </tr>
+
+      )
+
+    }
+
     return (
       <Table striped bordered hover>
         <thead>
@@ -26,24 +72,7 @@ class TableUser extends Component {
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Daniel</td>
-            <td>16</td>
-            <td>Solteiro</td>
-            <td>092318738192</td>
-            <td>Santa Barbara d' Oeste</td>
-            <td>São Paulo</td>
-            <td>
-              <Popup trigger={ <Button variant="primary">Editar</Button> } modal>
-                <FormEditUser />
-              </Popup>
-
-              <Popup trigger={ <Button className="margem" variant="dark">Delete</Button> } modal>
-                <ModalConfirmDelete />
-              </Popup>
-            </td>
-          </tr>
+          <GetPeoplesList />
         </tbody>
           </Table>
     )
