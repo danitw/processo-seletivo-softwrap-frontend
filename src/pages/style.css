@@ -12,6 +12,7 @@ main {
 .top {
   display: flex;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .top p {
