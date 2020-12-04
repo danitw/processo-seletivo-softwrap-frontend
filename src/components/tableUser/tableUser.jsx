@@ -47,7 +47,7 @@ class TableUser extends Component {
               </Popup>
 
               <Popup trigger={ <Button className="margem" variant="dark">Delete</Button> } modal>
-                <ModalConfirmDelete />
+                <ModalConfirmDelete id={ people.id } />
               </Popup>
             </td>
           </tr>
