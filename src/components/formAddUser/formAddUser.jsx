@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 
 import './index.css';
 
@@ -10,12 +10,13 @@ class FormAddUser extends Component {
     super();
 
     this.state = {
-        name: 'DAN',
-        age: 'dsdsa',
-        civil_state: 'Solteiro',
-        CPF: '3219031902',
-        city: 'santa',
-        state: 'sp'
+      name: 'DAN',
+      age: 'dsdsa',
+      civil_state: 'Solteiro',
+      CPF: '3219031902',
+      city: 'santa',
+      state: 'sp',
+      formSucess: null
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,8 +28,8 @@ class FormAddUser extends Component {
 
   handleInputChange(e) {
     const target = e.target;
-    const value = target.value;
-    const name = target.name;
+    const value  = target.value;
+    const name   = target.name;
     //alert(value)
     //alert(this.name)
     console.log(name) 
@@ -37,7 +38,7 @@ class FormAddUser extends Component {
   }
 
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const people = {
       name:         this.state.name,
@@ -51,21 +52,39 @@ class FormAddUser extends Component {
     this.addPeople(people);
   }
 
-  async addPeople(people) {
-    /* await axios({
-      method: 'post',
-      responseType: 'json',
-      url: 'http://localhost:8000/create',
-      data: people
-    }).then(r => {
-      console.log(r)
-    })*/
-    axios.post('http://localhost:8000/create', people)
+  addPeople(people) {
+    axios.post('http://localhost:8000/create', people).then(res => {
+      if(res.status === 200) {
+        this.setState({formSucess: true});
+      } else {
+        return false;
+      }
+    })
   }
 
   render() {
+
+    const FormSucess = (props) => {
+      /*if(this.formSucess === null) {
+        return <Alert variant="danger">Ocorreu um erro</Alert>
+      } else if(this.formSucess === true) {
+        return <Alert variant="primary">O registro foi adicionado ao com sucesso</Alert>
+      } else if(this.formSucess === false) {
+        return <Alert variant="danger">Ocorreu um erro</Alert>
+      }*/
+      if(props.sucess === true) {
+        return <Alert variant="primary">O registro foi adicionado ao com sucesso</Alert>
+      } else if(props.sucess) {
+        return <Alert variant="danger">Ocorreu um erro</Alert>
+      }
+
+      return <h1></h1>
+    }
+
+
     return (
       <div className="formAddUser">
+          <FormSucess sucess={this.state.formSucess}></FormSucess>
           <Form>
             <Form.Group>
               <Form.Label>Nome</Form.Label>
