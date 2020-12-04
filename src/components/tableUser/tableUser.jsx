@@ -43,7 +43,7 @@ class TableUser extends Component {
             <td>{ people.state }</td>
             <td>
               <Popup trigger={ <Button variant="primary">Editar</Button> } modal>
-                <FormEditUser />
+                <FormEditUser people={ people } />
               </Popup>
 
               <Popup trigger={ <Button className="margem" variant="dark">Delete</Button> } modal>

@@ -10,12 +10,12 @@ class FormAddUser extends Component {
     super();
 
     this.state = {
-      name: 'DAN',
-      age: 'dsdsa',
+      name: 'Elon Musk',
+      age: '32',
       civil_state: 'Solteiro',
-      CPF: '3219031902',
-      city: 'santa',
-      state: 'sp',
+      CPF: '0302391031',
+      city: 'São Paulo',
+      state: 'São Paulo',
       formSucess: null
     }
 
