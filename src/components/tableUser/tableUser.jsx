@@ -33,7 +33,7 @@ class TableUser extends Component {
       let peoples = this.state.peoples;
 
       return peoples.map(people =>
-          <tr>
+          <tr key={people.id}>
             <td>{ people.id }</td>
             <td>{ people.name }</td>
             <td>{ people.age }</td>
