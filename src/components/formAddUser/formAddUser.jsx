@@ -50,13 +50,30 @@ class FormAddUser extends Component {
   }
 
   addPeople(people) {
-    axios.post('https://mysterious-everglades-67269.herokuapp.com/create', people).then(res => {
+
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }
+
+
+    axios.post('https://mysterious-everglades-67269.herokuapp.com/create', people, config).then(res => {
       if(res.status === 200) {
         this.setState({formSucess: true});
       } else {
         return false;
       }
     })
+
+      /*axios({
+      method: 'post',
+      url: 'https://mysterious-everglades-67269.herokuapp.com/create',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: people
+    });*/
   }
 
   render() {
