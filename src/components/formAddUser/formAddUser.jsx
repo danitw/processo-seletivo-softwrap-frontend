@@ -30,10 +30,7 @@ class FormAddUser extends Component {
     const target = e.target;
     const value  = target.value;
     const name   = target.name;
-    //alert(value)
-    //alert(this.name)
-    console.log(name) 
-    console.log(value) 
+
     this.setState({ [name]: value });
   }
 
@@ -65,13 +62,6 @@ class FormAddUser extends Component {
   render() {
 
     const FormSucess = (props) => {
-      /*if(this.formSucess === null) {
-        return <Alert variant="danger">Ocorreu um erro</Alert>
-      } else if(this.formSucess === true) {
-        return <Alert variant="primary">O registro foi adicionado ao com sucesso</Alert>
-      } else if(this.formSucess === false) {
-        return <Alert variant="danger">Ocorreu um erro</Alert>
-      }*/
       if(props.sucess === true) {
         return <Alert variant="primary">O registro foi adicionado ao com sucesso</Alert>
       } else if(props.sucess) {

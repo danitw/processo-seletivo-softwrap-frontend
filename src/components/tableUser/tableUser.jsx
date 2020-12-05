@@ -10,9 +10,9 @@ import FormEditUser from '../formEditUser/formEditUser.jsx';
 import ModalConfirmDelete from '../modalConfirmDelete/modalConfirmDelete.jsx';
 
 class TableUser extends Component {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
+    console.log(props)
     this.state = {
       peoples: []
     }
@@ -51,10 +51,7 @@ class TableUser extends Component {
               </Popup>
             </td>
           </tr>
-
-      )
-
-    }
+      )}
 
     return (
       <Table striped bordered hover>
