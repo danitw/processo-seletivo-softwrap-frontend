@@ -12,7 +12,7 @@ import ModalConfirmDelete from '../modalConfirmDelete/modalConfirmDelete.jsx';
 class TableUser extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    
     this.state = {
       peoples: []
     }
@@ -23,7 +23,7 @@ class TableUser extends Component {
   }
 
   async fetchPeoples() {
-    axios.get('http://localhost:8000').then(res => {
+    axios.get('https://mysterious-everglades-67269.herokuapp.com/').then(res => {
       this.setState({ peoples: res.data })
     })
   }

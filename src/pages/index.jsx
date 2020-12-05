@@ -23,7 +23,7 @@ class Index extends Component {
   }
 
   async fetchPeoples() {
-    axios.get('http://localhost:8000').then(res => {
+    axios.get('https://mysterious-everglades-67269.herokuapp.com/').then(res => {
       this.setState({ peoples: res.data })
     })
   }

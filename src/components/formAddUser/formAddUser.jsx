@@ -50,7 +50,7 @@ class FormAddUser extends Component {
   }
 
   addPeople(people) {
-    axios.post('http://localhost:8000/create', people).then(res => {
+    axios.post('https://mysterious-everglades-67269.herokuapp.com/create', people).then(res => {
       if(res.status === 200) {
         this.setState({formSucess: true});
       } else {

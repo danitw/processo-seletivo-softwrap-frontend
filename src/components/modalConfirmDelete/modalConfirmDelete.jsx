@@ -25,7 +25,7 @@ class ModalConfirmDelete extends Component {
   }
 
   addPeople(id) {
-    axios.delete(`http://localhost:8000/delete/${id}`).then(res => {
+    axios.delete(`https://mysterious-everglades-67269.herokuapp.com/delete/${id}`).then(res => {
       if(res.status === 200) {
         this.setState({formSucess: true});
       } else {
@@ -57,7 +57,6 @@ class ModalConfirmDelete extends Component {
           </div>
           <div className="actions">
             <Button className="yes" variant="danger" onClick={this.handleSubmit}>Sim</Button>
-            <Button variant="dark" >Não</Button>
           </div>
       </div>
     );

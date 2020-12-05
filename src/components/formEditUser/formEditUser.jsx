@@ -39,7 +39,7 @@ class FormEditUser extends Component {
   }
 
   addPeople(people) {
-    axios.put(`http://localhost:8000/edit/${this.state.id}`, people).then(res => {
+    axios.put(`https://mysterious-everglades-67269.herokuapp.com/edit/${this.state.id}`, people).then(res => {
       if(res.status === 200) {
         this.setState({formSucess: true});
       } else {
