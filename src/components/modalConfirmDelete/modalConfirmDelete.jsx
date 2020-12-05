@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Button, Alert } from 'react-bootstrap'
-import Popup from 'reactjs-popup';
 import './index.css';
 
 class ModalConfirmDelete extends Component {
@@ -43,7 +42,7 @@ class ModalConfirmDelete extends Component {
         return <Alert variant="danger">Ocorreu um erro</Alert>
       }
 
-      return <h1></h1>
+      return <h1>delete</h1>
     }
 
 

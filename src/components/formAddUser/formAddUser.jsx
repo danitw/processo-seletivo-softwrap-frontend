@@ -68,7 +68,7 @@ class FormAddUser extends Component {
         return <Alert variant="danger">Ocorreu um erro</Alert>
       }
 
-      return <h1></h1>
+      return <h1>add</h1>
     }
 
 
