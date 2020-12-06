@@ -3,7 +3,7 @@
 ## Frontend:
 
 Realizei o projeto usando as bibliotecas: react-popup e react-bootstrap, ambas pra facilitar o desenvolvimento de algumas funcionalidades
-Se serve como pontuação, eu não sabia react, tive q aprender enquanto fazia e por isso não consegui realizar tudo o q me foi proposto e por isso peço perdão por não te conseguido realizar o teste inteiro
+Se serve como pontuação, eu não sabia react, tive q aprender enquanto fazia
 
 Abrindo o projeto vc verá uma tabela mostrando todos os registros, clicando no add new vai aparecer popup com um formulario pra adicionar registros no banco de dados, clicando no edit do lado do registro aparece um popup com um formulario pra vc editar as informações e clicando no delete aparece um popup pedindo confirmação se você quer mesmo deletar
 
