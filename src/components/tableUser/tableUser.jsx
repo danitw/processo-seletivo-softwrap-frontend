@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
-import { Table } from 'react-bootstrap'
+import { Button, Table, Pagination } from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './index.css';
@@ -14,26 +13,80 @@ class TableUser extends Component {
     super(props);
     
     this.state = {
-      peoples: []
+      allPeoples: [],
+      peoples: [],
+      pageActual: 1,
+      limitItems: 9,
+      totalPage: 1,
     }
+
+
+    this.handlePage = this.handlePage.bind(this);
   }
 
   componentDidMount() {
     this.fetchPeoples();
   }
 
+  handlePage(page, ignore) {
+    this.setState({ pageActual: page })
+
+    let count = ( page * this.state.limitItems ) - this.state.limitItems;
+
+    let delimiter = count + this.state.limitItems;
+
+    let a = [];
+
+    for(count; count <= delimiter; count++) {
+      if(this.state.allPeoples[count] === undefined) {
+        break;
+      }
+
+      a[count] = this.state.allPeoples[count];
+
+    }
+    this.setState({ peoples: a });
+  }
+
+  componentDidUpdate() {
+  }
+
   async fetchPeoples() {
     axios.get('https://mysterious-everglades-67269.herokuapp.com/').then(res => {
-      this.setState({ peoples: res.data })
+      this.setState({ allPeoples: res.data });
+
+      this.setState({ totalPage: Math.ceil( res.data.length / this.state.limitItems ) })
+      let a = [];
+
+      for(let i = 0; i <= this.state.pageActual*this.state.limitItems; i++) {
+        a[i] = res.data[i];
+      }
+      this.setState({ peoples: a });
     })
   }
 
   render() {
+
+    let active = this.state.pageActual;
+    let items = [];
+    for (let number = 1; number <= this.state.totalPage; number++) {
+      items.push(
+        <Pagination.Item key={number} active={number === active} onClick={this.handlePage.bind(this, number)}>
+          {number}
+        </Pagination.Item>,
+      );
+    }
+    
+    const PaginationPeople = () => (
+      <Pagination>{items}</Pagination>
+    );
+
+
     const GetPeoplesList = () => {
       let peoples = this.state.peoples;
 
       return peoples.map(people =>
-          <tr key={people.id}>
+          <tr key={ people.id }>
             <td>{ people.id }</td>
             <td>{ people.name }</td>
             <td>{ people.age }</td>
@@ -54,6 +107,8 @@ class TableUser extends Component {
       )}
 
     return (
+      <div>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -71,7 +126,11 @@ class TableUser extends Component {
         <tbody>
           <GetPeoplesList />
         </tbody>
-          </Table>
+      </Table>
+        <div className="paginationPeople">
+          <PaginationPeople />
+         </div>
+     </div>
     )
   }
 }
