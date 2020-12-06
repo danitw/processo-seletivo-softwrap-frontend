@@ -14,17 +14,33 @@ class TableUser extends Component {
     super(props);
     
     this.state = {
-      peoples: []
+      allPeoples: [],
+      peoples: [],
+      pageActual: 1,
+      limitItems: 9,
+      totalPage: 1,
     }
   }
 
   componentDidMount() {
     this.fetchPeoples();
+
+  }
+
+  componentDidUpdate() {
   }
 
   async fetchPeoples() {
     axios.get('https://mysterious-everglades-67269.herokuapp.com/').then(res => {
-      this.setState({ peoples: res.data })
+      this.setState({ allPeoples: res.data });
+
+      this.setState({totalPage: Math.ceil( res.data.length / this.state.limitItems )})
+      let a = [];
+
+      for(let i = 0; i <= this.state.pageActual*this.state.limitItems; i++) {
+        a[i] = res.data[i];
+      }
+      this.setState({ peoples: a });
     })
   }
 
@@ -33,7 +49,7 @@ class TableUser extends Component {
       let peoples = this.state.peoples;
 
       return peoples.map(people =>
-          <tr key={people.id}>
+          <tr key={ people.id }>
             <td>{ people.id }</td>
             <td>{ people.name }</td>
             <td>{ people.age }</td>
@@ -54,6 +70,8 @@ class TableUser extends Component {
       )}
 
     return (
+      <div>
+
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -71,7 +89,11 @@ class TableUser extends Component {
         <tbody>
           <GetPeoplesList />
         </tbody>
-          </Table>
+      </Table>
+        <div class="pagination">
+
+         </div>
+     </div>
     )
   }
 }
